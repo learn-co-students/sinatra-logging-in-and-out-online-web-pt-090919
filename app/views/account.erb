@@ -2,11 +2,23 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>title</title>
-    <link rel="stylesheet" href="stylesheets/bootstrap.css" type="text/css">  
+    <title>Account Details</title>
+    <link rel="stylesheet" href="stylesheets/bootstrap.css" type="text/css">
   </head>
   <body id="page-top">
-    
 
+<% if Helpers.is_logged_in?(session)%>
+    <%current_user = Helpers.current_user(session)%>
+
+    <h1>Welcome <%=current_user.username%></h1>
+    <p>Username: <%=current_user.username%></p>
+    <p>Password: <%=current_user.password%></p>
+    <h3>Your Balance: <%=current_user.balance%></h3>
+
+    <%else%>
+    <a href="/">Return to Home Page</a>
+    <%end%>
+
+    <a href="/logout">Log Out</a>
   </body>
 </html>
